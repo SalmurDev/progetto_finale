@@ -26,7 +26,6 @@ app.use(
   })
 );
 function sessionChecked(req, res, next) {
-  console.log(req.session.user);
   if (req.session.user) {
     next();
   } else {
@@ -36,7 +35,6 @@ function sessionChecked(req, res, next) {
   }
 }
 function adminChecked(req, res, next) {
-  console.log(req.session.user.role);
   if (req.session.user.role === "ADMIN") {
     next();
   } else {
