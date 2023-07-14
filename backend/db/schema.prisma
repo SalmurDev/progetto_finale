@@ -1,0 +1,39 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Users {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  email     String   @unique
+  name      String   @db.VarChar(255)@unique
+  password  String   @db.VarChar(255)
+  role      Role     @default(USER)
+  cards     Cards[]
+}
+
+model Cards {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  published   Boolean  @default(false)
+  name        String   @db.VarChar(255)
+  type        String   @db.VarChar(255)
+  region      String   @db.VarChar(255)
+  tier        Int      @default(0)
+  description String   @db.VarChar(255)
+  strength    Int      @default(0)
+  health      Int      @default(0)
+  author      Users?   @relation(fields: [authorId], references: [id])
+  authorId    Int?
+}
+
+enum Role {
+  USER
+  ADMIN
+}
