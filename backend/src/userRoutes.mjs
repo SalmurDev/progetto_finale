@@ -26,6 +26,11 @@ export const login = async (req, res) => {
   }
 };
 
+export const logout = (req, res) => {
+      req.session.user = undefined;
+      res.send("logged out");
+};
+
 export const register = async (req, res) => {
   try {
     const user = await prisma.users.create({

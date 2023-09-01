@@ -47,7 +47,6 @@ export default function LoginRegister() {
           const result = await api.post("/users/register", body);
 
           if (result.status === 200) {
-            alert("successfully registered!");
             console.log(result.data);
           } else alert("something went wrong, please try again");
         } catch (error) {
@@ -164,7 +163,7 @@ export default function LoginRegister() {
           });
           setIsLoading(false);
           if (result.status === 200) {
-            alert(`welcome ${name}`);
+            localStorage.setItem('user', name)
             window.location.replace("http://localhost:3000");
           } else alert("incorrect credentials, please try again");
         } catch (error) {

@@ -36,7 +36,6 @@ export default function CreateCard({
     try {
       const res = await api.post("/cards/create", body);
       console.log(res.data);
-      alert("card submitted");
       window.location.reload(false);
     } catch (error) {
       alert("not authorized, please log in first");
@@ -58,7 +57,6 @@ export default function CreateCard({
     try {
       const res = await api.put(`/cards/${id}`, body);
       console.log(res.data);
-      alert("card published");
       window.location.reload(false);
     } catch (error) {
       alert("not authorized, please log in first");

@@ -21,7 +21,7 @@ app.use(
     saveUninitialized: true,
     cookie: {
       secure: false,
-      maxAge: 600000,
+      // maxAge: 600000,
     },
   })
 );
@@ -53,6 +53,8 @@ app.get("/users", sessionChecked, adminChecked, users.getAll);
 app.post("/users/register", users.register);
 
 app.post("/users/login", users.login);
+
+app.post("/users/logout", users.logout);
 
 app.put("/users/:id", sessionChecked, adminChecked, users.update)
 
